@@ -1,7 +1,9 @@
+import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 
 export default function Dashboard() {
   const { user, logout } = useAuth()
+  const navigate = useNavigate()
 
   return (
     <div className="p-8">
@@ -11,9 +13,24 @@ export default function Dashboard() {
           Log out
         </button>
       </div>
-      <p className="text-slate-600">
-        This is your dashboard placeholder. Next: build the Asset Registry and
-        Incident Queue pages here.
+
+      <div className="flex gap-3">
+        <button
+          onClick={() => navigate('/tickets')}
+          className="bg-slate-800 text-white px-4 py-2 rounded hover:bg-slate-700"
+        >
+          View Incident Queue
+        </button>
+        <button
+          onClick={() => navigate('/tickets/new')}
+          className="bg-white border px-4 py-2 rounded hover:bg-slate-50"
+        >
+          Raise New Ticket
+        </button>
+      </div>
+
+      <p className="text-slate-500 mt-6 text-sm">
+        Next up: Asset Registry page and dashboard KPI charts.
       </p>
     </div>
   )
